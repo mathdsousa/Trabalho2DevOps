@@ -49,9 +49,9 @@ services:
         condition: service_started
         
   send-email: 
-    build: ./sendEmail
+    build: ./send-email
     env_file:
-      - ./sendEmail/.env
+      - ./send-email/.env
     restart: always
 
   # nagios:

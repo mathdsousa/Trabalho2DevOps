@@ -1,0 +1,12 @@
+global:
+  backend:
+    name: backend
+  
+  frontend:
+    name: frontend
+
+  image-service:
+    name: image-service
+
+  send-email:
+    name: send-email

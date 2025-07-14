@@ -1,0 +1,6 @@
+replicaCount: 1
+
+image:
+  repository: trabalho2devops-backend
+  tag: latest
+  pullPolicy: IfNotPresent

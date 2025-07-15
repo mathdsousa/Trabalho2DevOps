@@ -1,28 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: {{ .Values.global.backend.name }}
+    name: {{ .Release.Name }}-image-service
     labels:
-        app: {{ .Values.global.backend.name }}
+        app: {{ .Release.Name }}-image-service
 spec:
     replicas: {{ .Values.replicaCount }}
     selector:
         matchLabels:
-            app: {{ .Values.global.backend.name }}
+            app: {{ .Release.Name }}-image-service
     strategy:
         type: Recreate
     template:
         metadata:
             labels:
-                app: {{ .Values.global.backend.name }}
+                app: {{ .Release.Name }}-image-service
         spec:
             containers:
-              - name: {{ .Values.global.backend.name }}
+              - name: {{ .Release.Name }}-image-service
                 image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
                 imagePullPolicy: {{ .Values.image.imagePullPolicy }}
                 ports:
-                  - containerPort: 3001
-                env:             
+                  - containerPort: 3007
+                env:
                   - name: DB_HOST
                     valueFrom:
                         configMapKeyRef:
@@ -43,15 +43,13 @@ spec:
                         configMapKeyRef:
                             name: {{ .Release.Name }}-db-configmap
                             key: db_name
-                  - name: JWT_SECRET
-                    valueFrom:
-                        secretKeyRef:
-                            name: {{ .Release.Name }}-backend-secret
-                            key: jwt_secret
-                resources:
-                    requests:
-                        memory: "1Gi"
-                        cpu: "1"
-                    limits:
-                        memory: "2Gi"
-                        cpu: "2"
+            resources:
+                requests:
+                    memory: "1Gi"
+                    cpu: "1"
+                limits:
+                    memory: "2Gi"
+                    cpu: "2"
+            
+
+                  

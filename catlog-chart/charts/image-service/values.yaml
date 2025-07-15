@@ -1,0 +1,6 @@
+replicaCount: 1
+
+image:
+  repository: trabalho2devops-image-service
+  tag: latest
+  pullPolicy: IfNotPresent

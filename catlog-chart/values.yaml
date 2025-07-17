@@ -1,7 +1,7 @@
 global:
   backend:
     name: backend
-  
+
   frontend:
     name: frontend
 
@@ -10,3 +10,9 @@ global:
 
   send-email:
     name: send-email
+
+  db:
+    name: db
+    env:
+      DB_HOST: meuapp-db
+      DB_NAME: usuarios

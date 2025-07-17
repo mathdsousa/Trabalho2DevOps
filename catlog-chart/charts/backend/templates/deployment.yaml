@@ -1,57 +1,57 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: {{ .Values.global.backend.name }}
-    labels:
-        app: {{ .Values.global.backend.name }}
+  name: {{ .Chart.Name }}
+  labels:
+    app: {{ .Chart.Name }}
 spec:
-    replicas: {{ .Values.replicaCount }}
-    selector:
-        matchLabels:
-            app: {{ .Values.global.backend.name }}
-    strategy:
-        type: Recreate
-    template:
-        metadata:
-            labels:
-                app: {{ .Values.global.backend.name }}
-        spec:
-            containers:
-              - name: {{ .Values.global.backend.name }}
-                image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-                imagePullPolicy: {{ .Values.image.imagePullPolicy }}
-                ports:
-                  - containerPort: 3001
-                env:             
-                  - name: DB_HOST
-                    valueFrom:
-                        configMapKeyRef:
-                            name: {{ .Release.Name }}-db-configmap
-                            key: db_host
-                  - name: DB_USER
-                    valueFrom:
-                        secretKeyRef:
-                            name: {{ .Release.Name }}-db-secret
-                            key: username
-                  - name: DB_PASS
-                    valueFrom:
-                        secretKeyRef:
-                            name: {{ .Release.Name }}-db-secret
-                            key: password
-                  - name: DB_NAME
-                    valueFrom:
-                        configMapKeyRef:
-                            name: {{ .Release.Name }}-db-configmap
-                            key: db_name
-                  - name: JWT_SECRET
-                    valueFrom:
-                        secretKeyRef:
-                            name: {{ .Release.Name }}-backend-secret
-                            key: jwt_secret
-                resources:
-                    requests:
-                        memory: "1Gi"
-                        cpu: "1"
-                    limits:
-                        memory: "2Gi"
-                        cpu: "2"
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 3001
+          env:
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Release.Name }}-db-configmap
+                  key: db_host
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-db-secret
+                  key: username
+            - name: DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-db-secret
+                  key: password
+            - name: DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Release.Name }}-db-configmap
+                  key: db_name
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-backend-secret
+                  key: jwt_secret
+          resources:
+            requests:
+              memory: "1Gi"
+              cpu: "1"
+            limits:
+              memory: "2Gi"
+              cpu: "2"

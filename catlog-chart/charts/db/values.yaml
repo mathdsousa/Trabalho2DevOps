@@ -1,6 +1,9 @@
 replicaCount: 1
-
 image:
   repository: mysql
-  tag: "9.3.0"
+  tag: "8.0"
   pullPolicy: IfNotPresent
+mysql:
+  rootPassword: root
+  storageSize: 1Gi
+  mysqlRootPassword: root

@@ -1,0 +1,18 @@
+dependencies:
+- name: backend
+  repository: file://charts/backend
+  version: 0.1.0
+- name: db
+  repository: file://charts/db
+  version: 0.1.0
+- name: frontend
+  repository: file://charts/frontend
+  version: 0.1.0
+- name: image-service
+  repository: file://charts/image-service
+  version: 0.1.0
+- name: send-email
+  repository: file://charts/send-email
+  version: 0.1.0
+digest: sha256:734bf734f9dc0911832a01affeaa03976fd1d8dee6d151995169ed52e4446d88
+generated: "2025-07-16T20:01:56.949705155-03:00"

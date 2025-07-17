@@ -1,45 +1,38 @@
 apiVersion: apps/v1
 kind: Deployment
-metadeta:
-  name: {{ .Release.Name }}-db 
-  labels:
-    app: {{ .Release.Name }}-db 
+metadata:
+  name: {{ .Release.Name }}-mysql
+  namespace: {{ .Release.Namespace }}
 spec:
-  replicas: {{ .Values.replicaCount }}
-  selector: 
+  replicas: 1
+  selector:
     matchLabels:
-      app: {{ .Release.Name }}-db 
-  strategy: 
-    type: Recreate
+      app: mysql
   template:
-    metadeta:
-      labels: 
-        app: {{ .Release.Name }}-db 
+    metadata:
+      labels:
+        app: mysql
     spec:
       containers:
-      - name: {{ .Release.Name }}-db 
-        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-        imagePullPolicy: {{ .Values.image.imagePullPolicy }}
-        ports:
-          - containerPort: 3306
-        env:
-          - name: MYSQL_ROOT_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: {{ .Release.Name }}-db-secret
-                key: password
-        resources:
-          requests: 
-            memory: "1Gi"
-            cpu: "1"
-          limits:
-            memory: "2Gi"
-            cpu: "2"
-        volumeMounts:
-          - name: {{ .Release.Name }}-db-persistent-storage
-            mountPath: /var/lib/mysql
+        - name: mysql
+          image: mysql:8.0
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-mysql-secret
+                  key: root_password
+          volumeMounts:
+            - name: mysql-data
+              mountPath: /var/lib/mysql
+            - name: init-script
+              mountPath: /docker-entrypoint-initdb.d
       volumes:
-        - name: {{ .Release.Name }}-db-persistent-storage
+        - name: mysql-data
           persistentVolumeClaim:
-            clainName: {{ .Release.Name }}-db-pv-claim
-
+            claimName: {{ .Release.Name }}-mysql-pvc
+        - name: init-script
+          configMap:
+            name: {{ .Release.Name }}-mysql-init

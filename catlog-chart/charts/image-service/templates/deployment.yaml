@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: {{ .Release.Name }}-image-service
+    name: {{ .Chart.Name }}
     labels:
-        app: {{ .Release.Name }}-image-service
+        app: {{ .Chart.Name }}
 spec:
     replicas: {{ .Values.replicaCount }}
     selector:
         matchLabels:
-            app: {{ .Release.Name }}-image-service
+            app: {{ .Chart.Name }}
     strategy:
         type: Recreate
     template:
         metadata:
             labels:
-                app: {{ .Release.Name }}-image-service
+                app: {{ .Chart.Name }}
         spec:
             containers:
-              - name: {{ .Release.Name }}-image-service
+              - name: {{ .Chart.Name }}
                 image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-                imagePullPolicy: {{ .Values.image.imagePullPolicy }}
+                imagePullPolicy: {{ .Values.image.pullPolicy }}
                 ports:
                   - containerPort: 3007
                 env:

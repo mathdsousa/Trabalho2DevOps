@@ -1,0 +1,6 @@
+replicaCount: 1
+
+image:
+  repository: trabalho2devops-frontend
+  pullPolicy: IfNotPresent
+  tag: "latest"

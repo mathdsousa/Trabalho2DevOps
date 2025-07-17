@@ -40,6 +40,24 @@ A aplicação é composta pelos seguintes microsserviços:
 
 ## Etapas para executar o projeto
 
+## Rodando deploy.sh
+
+Dê permissão ao arquivo deploy.sh:
+
+```bash
+chmod +x deploy.sh
+```
+
+E por fim, execute com: 
+```bash
+./deploy.sh
+```
+Espere todos os recursos rodarem, é normal o image-service dar erro para rodar porque o banco de dados está sendo iniciado.
+
+Abaixo está um breve detalhamento dos comandos usados no script.
+
+---
+
 ### 1. Iniciar o Minikube
 
 ```bash
@@ -125,20 +143,6 @@ Após a instalação, a aplicação pode ser acessada via navegador através do 
 http://catlog.k8s.local
 ```
 
----
-
-## Rodando deploy.sh
-
-Dê permissão ao arquivo deploy.sh:
-
-```bash
-chmod +x deploy.sh
-```
-
-E por fim, execute com: 
-```bash
-./deploy.sh
-```
 ---
 
 ## Autor

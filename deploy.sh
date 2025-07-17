@@ -28,8 +28,13 @@ minikube_ip=$(minikube ip)
 echo -e "\nAdicione a seguinte linha ao seu /etc/hosts (como root):"
 echo -e "${minikube_ip}\tcatlog.k8s.local\n"
 
+
 # Aguarda o usuário confirmar edição do hosts
-read -p "Pressione ENTER após editar o /etc/hosts..."
+read -p "Pressione ENTER após editar o /etc/hosts e esperar um pouco para o ingress-nginx-controller-admission subir"
 
 # Aplica o Helm chart
-helm install catlog ./catlog-chart -n dev --create-namespace
+helm install catlog ./catlog-chart 
+
+echo -e "\n Espere todos os pods rodarem antes de acessar catlog.k8s.local"
+
+minikube dashboard &

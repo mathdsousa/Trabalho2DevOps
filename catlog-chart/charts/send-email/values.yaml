@@ -1,6 +1,6 @@
 replicaCount: 1
 
 image:
-  repository: trabalho2devops/send-email
+  repository: trabalho2devops-send-email
   pullPolicy: IfNotPresent
   tag: "latest"

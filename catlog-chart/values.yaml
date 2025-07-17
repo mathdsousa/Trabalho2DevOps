@@ -14,5 +14,5 @@ global:
   db:
     name: db
     env:
-      DB_HOST: meuapp-db
+      DB_HOST: catlog-db
       DB_NAME: usuarios

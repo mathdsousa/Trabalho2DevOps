@@ -21,14 +21,19 @@ function Geral() {
     useEffect(() => {
         const fetchUserName = async () => {
             const token = localStorage.getItem('token');
+            console.log('Token enviado para /geral:', token); 
 
-            const resposta = await fetch('/inicio', {
+            const resposta = await fetch('/auth', {
                 method: 'GET',
                 headers: { Authorization: `Bearer ${token}` },
             });
 
             const dados = await resposta.json();
-            setMensagem(dados.mensagem); // Atualiza o estado com a mensagem
+            console.log("RESPOSTA DO BACKEND:", dados); // <-- Aqui!
+            setMensagem(dados.mensagem);
+
+            // const dados = await resposta.json();
+            // setMensagem(dados.mensagem); // Atualiza o estado com a mensagem
         };
 
         fetchUserName();

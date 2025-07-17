@@ -15,7 +15,7 @@ function Perfil(){
         const fetchUserName = async () => {
             const token = localStorage.getItem('token');
 
-            const resposta = await fetch('/inicio', {
+            const resposta = await fetch('/auth', {
                 method: 'GET',
                 headers: { Authorization: `Bearer ${token}` },
             });

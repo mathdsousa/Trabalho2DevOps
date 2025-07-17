@@ -52,7 +52,7 @@ app.get('/recuperarPerfil', verificarToken, async (req, res) => {
 });
 
 // Rota do Início (retorna informações do usuário local)
-app.get('/inicio', verificarToken, (req, res) => {
+app.get('/auth', verificarToken, (req, res) => {
   const userName = req.user.nome;  // O nome vem do payload do JWT
   res.status(200).json({ mensagem: `${userName}` });
 });

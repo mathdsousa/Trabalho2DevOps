@@ -127,6 +127,20 @@ http://catlog.k8s.local
 
 ---
 
+## Rodando deploy.sh
+
+Dê permissão ao arquivo deploy.sh:
+
+```bash
+chmod +x deploy.sh
+```
+
+E por fim, execute com: 
+```bash
+./deploy.sh
+```
+---
+
 ## Autor
 Karys Barbosa e Matheus Sousa
 Disciplina: DevOps

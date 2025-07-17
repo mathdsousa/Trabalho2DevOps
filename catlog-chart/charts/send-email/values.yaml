@@ -4,9 +4,3 @@ image:
   repository: trabalho2devops-send-email
   pullPolicy: IfNotPresent
   tag: "latest"
-
-service:
-  type: ClusterIP
-  port: 5000
-
-containerPort: 5000

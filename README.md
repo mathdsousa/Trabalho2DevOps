@@ -54,7 +54,7 @@ E por fim, execute com:
 ```
 Espere todos os recursos rodarem, é normal o image-service dar erro para rodar porque o banco de dados está sendo iniciado.
 
-Abaixo está um breve detalhamento dos comandos usados no script.
+Abaixo está um breve detalhamento dos comandos usados no script para subir a aplicação.
 
 ---
 
